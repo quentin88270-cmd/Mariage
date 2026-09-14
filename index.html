@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jennifer 70kg &amp; Quentin — Mariage</title>
+<title>Jennifer &amp; Quentin — Mariage</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -276,6 +276,33 @@
     .etape{ grid-template-columns:70px 1px 1fr; gap:18px; }
     .etape-heure{ font-size:1.15rem; }
   }
+
+  /* ============ AJOUTER À L'AGENDA ============ */
+  .agenda{ background:var(--blanc); }
+
+  .boutons-agenda{
+    margin-top:44px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+  }
+
+  .bouton-agenda{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--or);
+    color:var(--noir);
+    background:transparent;
+    padding:15px 26px;
+    font-family:var(--sans);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-decoration:none;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .bouton-agenda:hover{ background:var(--or); color:var(--blanc-pur); }
 
   /* ============ GALERIE ============ */
   .galerie{ background:var(--blanc); }
@@ -711,6 +738,19 @@
             <a class="lien-carte" href="https://maps.app.goo.gl/LtfvjH6tQGrjWhQK8" target="_blank" rel="noopener">Voir sur la carte →</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AJOUTER À L'AGENDA ============ -->
+  <section class="agenda">
+    <div class="conteneur">
+      <div class="titre-section">NE MANQUEZ PAS LE JOUR J</div>
+      <div class="ornement"></div>
+      <h2 class="grand-titre">Ajoutez la date à votre agenda</h2>
+      <div class="boutons-agenda">
+        <a class="bouton-agenda" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mariage%20de%20Quentin%20%26%20Jennifer&dates=20270911T130000Z/20270911T213000Z&details=C%C3%A9r%C3%A9monie%20%C3%A0%2015h00%20%28Basilique%20Notre-Dame%20de%20Sion%2C%20Saxon-Sion%29%2C%20vin%20d%27honneur%20%C3%A0%2017h00%20puis%20d%C3%AEner%20et%20soir%C3%A9e%20%C3%A0%2019h00%20%28Chalet%20Club%20House%2C%20Socourt%29.&location=Basilique%20Notre-Dame%20de%20Sion%20%2815h00%29%20puis%20Chalet%20Club%20House%2C%2088130%20Socourt%20%2817h00%29" target="_blank" rel="noopener">Google Calendar (Android)</a>
+        <a class="bouton-agenda" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-//Mariage%20Quentin%20Jennifer//FR%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Amariage-qj-complet-2027%40monroadbook%0D%0ADTSTAMP%3A20270101T000000Z%0D%0ADTSTART%3A20270911T130000Z%0D%0ADTEND%3A20270911T213000Z%0D%0ASUMMARY%3AMariage%20de%20Quentin%20%26%20Jennifer%0D%0ADESCRIPTION%3AC%C3%A9r%C3%A9monie%20%C3%A0%2015h00%20%28Basilique%20Notre-Dame%20de%20Sion%2C%20Saxon-Sion%29%2C%20vin%20d%27honneur%20%C3%A0%2017h00%20puis%20d%C3%AEner%20et%20soir%C3%A9e%20%C3%A0%2019h00%20%28Chalet%20Club%20House%2C%20Socourt%29.%0D%0ALOCATION%3ABasilique%20Notre-Dame%20de%20Sion%20%2815h00%29%20puis%20Chalet%20Club%20House%2C%2088130%20Socourt%20%2817h00%29%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR%0D%0A" download="mariage-quentin-jennifer.ics">Apple Calendar (iPhone)</a>
       </div>
     </div>
   </section>
