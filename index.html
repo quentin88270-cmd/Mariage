@@ -458,9 +458,231 @@
   }
   footer .hero-esperluette{ color:var(--or); font-size:1.4rem; margin-bottom:10px; }
 
+  /* ============ OUVERTURE ARCHE DE FLEURS ============ */
+  .cache{ display:none !important; }
+
+  .ouverture{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:var(--noir);
+    cursor:pointer;
+    overflow:hidden;
+  }
+  .volet{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:52%;
+    background:var(--noir);
+    transition:transform 1s cubic-bezier(0.76,0,0.24,1);
+  }
+  .volet-gauche{ left:0; }
+  .volet-droit{ right:0; }
+  .fleurs-arche{ width:100%; height:100%; display:block; }
+  .ouverture.ouverte .volet-gauche{ transform:translateX(-100%); }
+  .ouverture.ouverte .volet-droit{ transform:translateX(100%); }
+  .ouverture.ouverte .invite-ouverture{ opacity:0; }
+
+  .invite-ouverture{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:2;
+    color:var(--blanc);
+    pointer-events:none;
+    transition:opacity 0.4s ease;
+  }
+  .invite-ouverture-texte{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(2.6rem, 9vw, 4.4rem);
+    color:var(--or-clair);
+    letter-spacing:0.06em;
+  }
+  .invite-ouverture-sous{
+    margin-top:16px;
+    font-size:0.7rem;
+    letter-spacing:0.24em;
+    color:var(--gris);
+    animation:pulser 2.2s ease-in-out infinite;
+  }
+  @keyframes pulser{
+    0%,100%{ opacity:0.55; }
+    50%{ opacity:1; }
+  }
+
+  /* ============ TICKET À GRATTER ============ */
+  .ecran-grattage{
+    position:fixed;
+    inset:0;
+    z-index:9998;
+    background:var(--noir);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:34px;
+    padding:24px;
+    transition:opacity 0.6s ease;
+  }
+  .ecran-grattage.fermeture{ opacity:0; }
+
+  .grattage-intro{
+    font-family:var(--serif);
+    font-size:1.3rem;
+    color:var(--blanc);
+    opacity:0.85;
+  }
+
+  .carte-grattage{
+    position:relative;
+    width:min(320px, 80vw);
+    height:180px;
+    border:1px solid var(--ligne);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .grattage-dessous{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:var(--noir-doux);
+  }
+  .grattage-label{
+    font-size:0.68rem;
+    letter-spacing:0.3em;
+    color:var(--or);
+    margin-bottom:8px;
+  }
+  .grattage-date{
+    font-family:var(--serif);
+    font-size:2.2rem;
+    color:var(--blanc);
+    letter-spacing:0.04em;
+  }
+  .grattage-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    touch-action:none;
+    cursor:grab;
+  }
+  .grattage-instruction{
+    position:absolute;
+    bottom:-40px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    color:var(--gris);
+    white-space:nowrap;
+    transition:opacity 0.4s ease;
+  }
+
+  .bouton-continuer{
+    background:transparent;
+    border:1px solid var(--or);
+    color:var(--or-clair);
+    padding:15px 28px;
+    font-family:var(--sans);
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    cursor:pointer;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .bouton-continuer:hover{ background:var(--or); color:var(--noir); }
+
 </style>
 </head>
 <body>
+
+  <!-- ============ OUVERTURE : ARCHE DE FLEURS ============ -->
+  <div class="ouverture" id="ouvertureArche">
+    <div class="volet volet-gauche">
+      <svg class="fleurs-arche" viewBox="0 0 300 900" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <line x1="270" y1="0" x2="270" y2="900" stroke="#c9a227" stroke-opacity="0.35" stroke-width="1"/>
+        <g opacity="0.9">
+          <circle cx="255" cy="90" r="16" fill="#c9a227" opacity="0.5"/>
+          <circle cx="270" cy="80" r="22" fill="#e3c56b" opacity="0.7"/>
+          <circle cx="248" cy="70" r="12" fill="#faf8f4" opacity="0.6"/>
+          <ellipse cx="215" cy="95" rx="28" ry="10" fill="#8a8a86" opacity="0.35" transform="rotate(-20 215 95)"/>
+          <ellipse cx="225" cy="130" rx="24" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(15 225 130)"/>
+
+          <circle cx="262" cy="260" r="14" fill="#e3c56b" opacity="0.55"/>
+          <circle cx="278" cy="250" r="19" fill="#c9a227" opacity="0.65"/>
+          <ellipse cx="230" cy="270" rx="26" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(-10 230 270)"/>
+
+          <circle cx="250" cy="430" r="20" fill="#c9a227" opacity="0.55"/>
+          <circle cx="272" cy="420" r="13" fill="#faf8f4" opacity="0.55"/>
+          <circle cx="258" cy="450" r="10" fill="#e3c56b" opacity="0.6"/>
+          <ellipse cx="215" cy="440" rx="30" ry="10" fill="#8a8a86" opacity="0.32" transform="rotate(12 215 440)"/>
+
+          <circle cx="265" cy="600" r="17" fill="#e3c56b" opacity="0.55"/>
+          <circle cx="248" cy="615" r="12" fill="#c9a227" opacity="0.6"/>
+          <ellipse cx="222" cy="595" rx="27" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(-18 222 595)"/>
+
+          <circle cx="258" cy="770" r="15" fill="#c9a227" opacity="0.5"/>
+          <circle cx="275" cy="785" r="20" fill="#e3c56b" opacity="0.65"/>
+          <circle cx="245" cy="795" r="11" fill="#faf8f4" opacity="0.55"/>
+          <ellipse cx="212" cy="775" rx="26" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(-14 212 775)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="volet volet-droit">
+      <svg class="fleurs-arche" viewBox="0 0 300 900" preserveAspectRatio="xMinYMid slice" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+        <line x1="270" y1="0" x2="270" y2="900" stroke="#c9a227" stroke-opacity="0.35" stroke-width="1"/>
+        <g opacity="0.9">
+          <circle cx="255" cy="90" r="16" fill="#c9a227" opacity="0.5"/>
+          <circle cx="270" cy="80" r="22" fill="#e3c56b" opacity="0.7"/>
+          <circle cx="248" cy="70" r="12" fill="#faf8f4" opacity="0.6"/>
+          <ellipse cx="215" cy="95" rx="28" ry="10" fill="#8a8a86" opacity="0.35" transform="rotate(-20 215 95)"/>
+          <ellipse cx="225" cy="130" rx="24" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(15 225 130)"/>
+
+          <circle cx="262" cy="260" r="14" fill="#e3c56b" opacity="0.55"/>
+          <circle cx="278" cy="250" r="19" fill="#c9a227" opacity="0.65"/>
+          <ellipse cx="230" cy="270" rx="26" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(-10 230 270)"/>
+
+          <circle cx="250" cy="430" r="20" fill="#c9a227" opacity="0.55"/>
+          <circle cx="272" cy="420" r="13" fill="#faf8f4" opacity="0.55"/>
+          <circle cx="258" cy="450" r="10" fill="#e3c56b" opacity="0.6"/>
+          <ellipse cx="215" cy="440" rx="30" ry="10" fill="#8a8a86" opacity="0.32" transform="rotate(12 215 440)"/>
+
+          <circle cx="265" cy="600" r="17" fill="#e3c56b" opacity="0.55"/>
+          <circle cx="248" cy="615" r="12" fill="#c9a227" opacity="0.6"/>
+          <ellipse cx="222" cy="595" rx="27" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(-18 222 595)"/>
+
+          <circle cx="258" cy="770" r="15" fill="#c9a227" opacity="0.5"/>
+          <circle cx="275" cy="785" r="20" fill="#e3c56b" opacity="0.65"/>
+          <circle cx="245" cy="795" r="11" fill="#faf8f4" opacity="0.55"/>
+          <ellipse cx="212" cy="775" rx="26" ry="9" fill="#8a8a86" opacity="0.3" transform="rotate(-14 212 775)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="invite-ouverture">
+      <div class="invite-ouverture-texte">Q &amp; J</div>
+      <div class="invite-ouverture-sous">TOUCHEZ POUR OUVRIR VOTRE INVITATION</div>
+    </div>
+  </div>
+
+  <!-- ============ TICKET À GRATTER : LA DATE ============ -->
+  <div class="ecran-grattage cache" id="ecranGrattage">
+    <p class="grattage-intro">Un mot avant d'entrer…</p>
+    <div class="carte-grattage">
+      <div class="grattage-dessous">
+        <div class="grattage-label">SAVE THE DATE</div>
+        <div class="grattage-date">11 . 09 . 2027</div>
+      </div>
+      <canvas id="canvasGrattage" class="grattage-canvas"></canvas>
+      <div class="grattage-instruction" id="grattageInstruction">Grattez pour découvrir la date ✦</div>
+    </div>
+    <button class="bouton-continuer cache" id="boutonContinuer">DÉCOUVRIR NOTRE MARIAGE →</button>
+  </div>
 
   <!-- ============ HERO ============ -->
   <section class="hero">
@@ -683,6 +905,127 @@
   }
   majCompteRebours();
   setInterval(majCompteRebours, 1000);
+
+
+  // ---- Ouverture : arche de fleurs ----
+  document.body.style.overflow = 'hidden';
+  const ouvertureArche = document.getElementById('ouvertureArche');
+
+  ouvertureArche.addEventListener('click', function(){
+    ouvertureArche.classList.add('ouverte');
+    setTimeout(function(){
+      ouvertureArche.style.display = 'none';
+      const ecranGrattage = document.getElementById('ecranGrattage');
+      ecranGrattage.classList.remove('cache');
+      initialiserGrattage();
+    }, 1000);
+  }, { once: true });
+
+  // ---- Ticket à gratter : révèle la date ----
+  function initialiserGrattage(){
+    const canvas = document.getElementById('canvasGrattage');
+    const ctx = canvas.getContext('2d');
+    const conteneur = canvas.parentElement;
+    const instruction = document.getElementById('grattageInstruction');
+    const boutonContinuer = document.getElementById('boutonContinuer');
+    const ecranGrattage = document.getElementById('ecranGrattage');
+
+    let dejaRevele = false;
+    let enTrain = false;
+
+    function redimensionner(){
+      canvas.width = conteneur.offsetWidth;
+      canvas.height = conteneur.offsetHeight;
+      dessinerCouche();
+    }
+
+    function dessinerCouche(){
+      const degrade = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      degrade.addColorStop(0, '#b8912a');
+      degrade.addColorStop(0.5, '#e3c56b');
+      degrade.addColorStop(1, '#b8912a');
+      ctx.fillStyle = degrade;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'rgba(13,13,13,0.5)';
+      ctx.font = '600 13px Jost, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('✦ GRATTEZ ICI ✦', canvas.width / 2, canvas.height / 2 + 5);
+    }
+
+    redimensionner();
+    window.addEventListener('resize', redimensionner);
+
+    function position(e){
+      const rect = canvas.getBoundingClientRect();
+      const point = e.touches ? e.touches[0] : e;
+      return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+    }
+
+    function gratter(x, y){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 26, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function verifierProgression(){
+      if(dejaRevele) return;
+      const image = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let transparents = 0;
+      let total = 0;
+      const pas = 12;
+      for(let i = 3; i < image.length; i += 4 * pas){
+        total++;
+        if(image[i] < 40) transparents++;
+      }
+      if(total > 0 && (transparents / total) > 0.45){
+        reveler();
+      }
+    }
+
+    function reveler(){
+      dejaRevele = true;
+      canvas.style.transition = 'opacity 0.6s ease';
+      canvas.style.opacity = '0';
+      instruction.style.opacity = '0';
+      boutonContinuer.classList.remove('cache');
+    }
+
+    function debut(e){
+      enTrain = true;
+      instruction.style.opacity = '0';
+      const p = position(e);
+      gratter(p.x, p.y);
+    }
+    function deplacement(e){
+      if(!enTrain) return;
+      if(e.cancelable) e.preventDefault();
+      const p = position(e);
+      gratter(p.x, p.y);
+      verifierProgression();
+    }
+    function fin(){
+      if(!enTrain) return;
+      enTrain = false;
+      verifierProgression();
+    }
+
+    canvas.addEventListener('mousedown', debut);
+    canvas.addEventListener('mousemove', deplacement);
+    window.addEventListener('mouseup', fin);
+    canvas.addEventListener('touchstart', debut, { passive: true });
+    canvas.addEventListener('touchmove', deplacement, { passive: false });
+    canvas.addEventListener('touchend', fin);
+
+    boutonContinuer.addEventListener('click', function(){
+      ecranGrattage.classList.add('fermeture');
+      setTimeout(function(){
+        ecranGrattage.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 600);
+    });
+  }
 
 
   // ---- Envoi du formulaire RSVP vers Google Sheet ----
